@@ -1,9 +1,9 @@
 //
 //  RootViewController.h
-//  Ball In Hole Tut
+//  Ball In Hole
 //
-//  Created by Bryan Weber on 8/13/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by Majid Moghadam on 11-09-23.
+//  Copyright 2011 All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

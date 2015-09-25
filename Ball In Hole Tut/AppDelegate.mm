@@ -10,8 +10,9 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
 #import "RootViewController.h"
+#import "MainMenuScene.h"
+#import "GameManager.h"
 
 @implementation AppDelegate
 
@@ -51,6 +52,8 @@
 	
 	
 	CCDirector *director = [CCDirector sharedDirector];
+    
+    
 	
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
@@ -69,10 +72,12 @@
 	
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
+    
+    
 	
-//	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-//	if( ! [director enableRetinaDisplay:YES] )
-//		CCLOG(@"Retina Display Not supported");
+	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+	if( ! [director enableRetinaDisplay:YES] )
+		CCLOG(@"Retina Display Not supported");
 	
 	//
 	// VERY IMPORTANT:
@@ -83,11 +88,11 @@
 	// By default, this template only supports Landscape orientations.
 	// Edit the RootViewController.m file to edit the supported orientations.
 	//
-#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+//#if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
-#else
-	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-#endif
+//#else
+//	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+//#endif
 	
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
@@ -109,9 +114,13 @@
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
+    
+    [[GameManager sharedGameManager] setupAudioEngine];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene]; 
+
+
 }
 
 
